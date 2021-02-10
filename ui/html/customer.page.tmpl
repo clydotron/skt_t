@@ -1,0 +1,35 @@
+{{template "base" .}}
+
+{{define "title"}}Customer #{{.Customer.ID}}{{end}}
+
+{{define "main"}}
+    {{with .Customer}}
+    <div class='customer'>
+        <div class='metadata'>
+            <strong>{{.Name}}</strong>
+            <span>{{.Email}}</span>
+        </div>
+    </div>
+    {{end}}
+    {{if .Rentals}}
+        <h2>Current Kegs</h2>
+        <table>
+            <tr>
+                <th>Contents</th>
+                <th>Date</th>
+                <th>Action</th>
+            </tr>
+            {{range .Rentals}}
+                <tr>
+                    <td>{{.Contents}}</td>
+                    <td>{{humanDate .TimeStamp}}</td>
+                    <td>
+                        <a href='/rentals/return/{{.ID.Hex}}'>Return</a>
+                    </td>
+                </tr>
+            {{end}}
+        </table>
+    {{else}}
+    <p>Apparently, {{.Customer.Name}} doesnt like beer.</p>
+    {{end}}
+{{end}}

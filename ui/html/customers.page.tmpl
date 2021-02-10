@@ -1,0 +1,33 @@
+{{template "base" .}}
+
+{{define "title"}}Customers{{end}}
+
+{{define "main"}}
+<h2>Customers</h2>
+{{if .Customers}}
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    {{range .Customers}}
+    <tr>
+        <td><a href='/customers/{{.ID.Hex}}'>{{.Name}}</a></td>
+        <td>{{.Email}}</td>
+        <td>
+            <a href='/customers/{{.ID.Hex}}/purchase'>purchase</a>
+            <a href='/customers/{{.ID.Hex}}/delete'>delete</a>
+        </td>
+    </tr>
+    {{end}}
+</table>
+{{else}}
+    <p>There's nothing to see here yet!</p>
+{{end}}
+<div>
+    <div>
+        <a href="/customers/create">Add Customer</a>
+    </div>
+</div>
+{{end}}

@@ -1,0 +1,24 @@
+{{template "base" .}}
+
+{{define "title"}}Who has Kegs{{end}}
+
+{{define "main"}}
+    <h2>Customers with Kegs</h2>
+    {{if .Customers}}
+     <table>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>ID</th>
+        </tr>
+        {{range .Customers}}
+        <tr>
+            <td><a href='/customer?id={{.ID}}'>{{.FirstName .LastName}}</a></td>
+            <td>#{{.ID}}</td>
+        </tr>
+        {{end}}
+    </table>
+    {{else}}
+        <p>There's nothing to see here... yet!</p>
+    {{end}}
+{{end}}

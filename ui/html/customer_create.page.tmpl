@@ -1,0 +1,27 @@
+{{template "base" .}}
+
+{{define "title"}}Create a New Customer{{end}}
+
+{{define "main"}}
+<form action='/customers/create' method='POST'>
+    {{with .Form}}
+    <div>
+        <label>Name:</label>
+        {{with .Errors.Get "name"}}
+            <label class='error'>{{.}}</label>
+        {{end}}
+        <input type='text' name='name' value='{{.Get "name"}}'>
+    </div>
+    <div>
+        <label>Email:</label>
+        {{with .Errors.Get "email"}}
+            <label class='error'>{{.}}</label>
+        {{end}}
+        <input type='text' name='email' value='{{.Get "email"}}'>
+    </div>
+    <div>
+        <input type='submit' value='Create Customer'>
+    </div>
+    {{end}}
+</form>
+{{end}}

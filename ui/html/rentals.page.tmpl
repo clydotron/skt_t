@@ -1,0 +1,29 @@
+{{template "base" .}}
+
+{{define "title"}}Rentals{{end}}
+
+{{define "main"}}
+<h2>Rentals</h2>
+{{if .Rentals}}
+<table>
+    <tr>
+        <th>Customer</th>
+        <th>Contents</th>
+        <th>Date</th>
+        <th>Action</th>
+    </tr>
+    {{range .Rentals}}
+    <tr>
+        <td><a href='/customers/{{.CustomerID.Hex}}'>{{.CustomerID.Hex}}</a></td>
+        <td>{{.Contents}}</td>
+        <td>{{humanDate .TimeStamp}}</td>
+        <td>
+         <a href='/rentals/return/{{.ID.Hex}}'>Return</a>
+        </td>
+    </tr>
+    {{end}}
+</table>
+{{else}}
+    <p>There's nothing to see here yet!</p>
+{{end}}
+{{end}}
